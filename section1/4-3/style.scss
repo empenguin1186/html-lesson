@@ -1,0 +1,38 @@
+// Sassは要素を変数化できる
+$cBlack: black;
+$cWhite: white;
+
+/* id 要素は#をつける */
+#container {
+    text-align: center;
+}
+
+/* class 要素には.をつける */
+.btn {
+    /* 背景は白 */
+    background-color: $cWhite;
+    /* 枠線の太さは 1px で実線、色は黒 */
+    border: 1px solid $cBlack;
+    /* 文字の色は黒 */
+    color: $cBlack;
+    /* 文字と枠線の間隔は上下10px, 左右40px */
+    padding: 10px 40px;
+    /* 文字の太さは600(平均は500で、設定できる値は 100 ~ 900) */
+    font-weight: 600;
+    /* ポインタがボタンの真上に来たら指マークになる */
+    cursor: pointer;
+    /* ページの上端から50px, 左端から0px
+    margin: 50px 0;
+    /* ホバー時の変化の設定。 (対象の要素, 変化が始まって終わるまでの秒数, 変化の仕方。関数, 変化が起きるまでの時間) */
+    // transition: all 0.3s ease 1s;
+
+    &.float {
+        transition: all 0.3s ease;
+        &:hover {
+            // 影の付け方の設定。(x軸方向にどれくらい広がるか, y軸方向にどれだけ広がるか, どれくらいぼかすか, 影全体の広がり方, 影の色)
+            box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+            background-color: $cBlack;
+            color: $cWhite;
+        }
+    }
+}

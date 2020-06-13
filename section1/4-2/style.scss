@@ -1,0 +1,18 @@
+.parent {
+    color: blue;
+
+    // > を使用すると, parent クラスの子要素の element クラスにのみ適用される
+    & > .element {
+        color: red;
+
+        // &に半角スペースを使用しない場合は、element と second-child クラスが付与されている要素に適用される
+        &.second-child {
+            color: black;
+        }
+    }
+}
+
+// element クラスのデフォルト値
+.element {
+    color: purple;
+}

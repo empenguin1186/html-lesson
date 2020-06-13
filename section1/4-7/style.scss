@@ -1,0 +1,58 @@
+// Sassは要素を変数化できる
+$cBlack: black;
+$cWhite: white;
+
+#container {
+    text-align: center;
+}
+
+.btn {
+    background-color: $cWhite;
+    border: 1px solid $cBlack;
+    color: $cBlack;
+    padding: 10px 40px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+
+    // 以下の2要素は3dアニメーションを設定するには必須の項目。
+    // 3dアニメーションを使用するという設定
+    transform-style: preserve-3d;
+    // どれくらい視点が対象と離れているかの設定
+    perspective: 1000px;
+    // (なくても良い) x軸方向, y軸方向の視点の変更
+    perspective-origin: 50% 50%;
+
+    // 3dアニメーションを追加すると、z-index が無効になってしまうため、前面に配置したい場合はtranslateZを使用する。
+    & span {
+        display: inline-block;
+        transform: translateZ(20px);
+    }
+    
+    &::before {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        background-color: $cBlack;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        // x軸を中心に回転
+        transform: rotateX(90deg);
+        transform-origin: top center;
+        transition: all 0.3s;
+
+        // 要素の透明度(0~1の範囲で設定可能)
+        opacity: 0;
+    }
+    
+    &:hover {
+        color: $cWhite;
+        &::before {
+            transform: none;
+            opacity: 1;
+        }
+    }
+}

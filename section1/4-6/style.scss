@@ -1,0 +1,42 @@
+// Sassは要素を変数化できる
+$cBlack: black;
+$cWhite: white;
+
+#container {
+    text-align: center;
+}
+
+.btn {
+    background-color: $cWhite;
+    border: 1px solid $cBlack;
+    color: $cBlack;
+    padding: 10px 40px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    transition: color 0.3s ease 0.1s;
+    
+    & span {
+        position: absolute;
+        // display: inline-block; で height と width を指定できる;
+        display: inline-block;
+        background-color: $cBlack;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        // x軸方向への移動
+        transform: translateX(-100%);
+        z-index: -1;
+        transition: transform 0.3s;
+    }
+    
+    &:hover {
+        color: $cWhite;
+        & span {
+            transform: none;
+        }
+    }
+}
