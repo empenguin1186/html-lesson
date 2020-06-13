@@ -1,6 +1,6 @@
 # html-lesson
 
-# section 4
+# section 1
 
 ## position
 - position が取りうる値は `relative`, `absolute`, `fixed`, `sticky`が存在する。
