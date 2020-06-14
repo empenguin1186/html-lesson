@@ -1,0 +1,44 @@
+$cBlack: black;
+
+.three-dot-spinner {
+    text-align: center;
+    
+    & div {
+        display: inline-block;
+        height: 18px;
+        width: 18px;
+        background-color: $cBlack;
+
+        // 以下の設定を行うと、円を表現することが可能
+        border-radius: 50%;
+
+        // (アニメーションの名前, 終了まで時間, アニメーションの表示方法)の設定
+        animation: sk-bouncedelay 1.4s infinite;
+
+        // Sass で for文を使用する場合は以下。
+        // from 1 to 3 は 1 <= i < 3 という意味。
+        // from 1 through 2 は 1 <= i <= 2 という意味。
+        @for $i from 1 to 3 {
+            // セレクタで $i を使用する場合は、#{}で囲む。
+            &:nth-child(#{$i}) {
+                // 式で使用する場合は #{} は必要ない。
+                animation-delay: -0.24s / $i;
+            }
+        }
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0% {
+        transform: scale(0);
+    }
+    40% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(0);
+    }
+}

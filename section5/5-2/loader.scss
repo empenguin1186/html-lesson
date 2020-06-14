@@ -1,0 +1,51 @@
+$cBlack: black;
+
+body {
+    text-align: center;
+}
+
+// プロパティの関数化には@mixinを使用する。
+@mixin animation(
+    $name,
+    $duration: 1s,
+    $timing-function: ease,
+    $delay: 3s,
+    $iteration-count: infinite,
+    $direction: alternate-reverse,
+    $fill-mode: forwards,
+) {
+    // animation-... プロパティは以下の記述でまとめることが可能。
+    animation: {
+        name: $name;
+        duration: $duration;
+        timing-function: $timing-function;
+        delay: $delay;
+        iteration-count: $iteration-count;
+        direction: $direction;
+        fill-mode: $fill-mode;
+    }
+}
+
+.rect {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    background-color: $cBlack;
+    @include animation(
+        $name: sk-bouncedelay,
+        $duration: 1.4s
+    );
+}
+.paused {
+    animation-play-state: paused;
+}
+
+@keyframes sk-bouncedelay {
+    from {
+        transform: scale(0);
+    }
+    
+    to {
+        transform: scale(1);
+    }
+}

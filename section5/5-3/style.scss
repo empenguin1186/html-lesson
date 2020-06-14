@@ -1,0 +1,40 @@
+div {
+    & a {
+
+        // ホバーされた場合に適用
+        &:hover {
+            color: blue;
+        }
+
+        // 以前にその要素がクリックされている場合に適用
+        &:visited {
+            color: red;
+        }
+
+        // ポインタが直近でクリックした要素に適用
+        &:focus {
+            color: yellow;
+        }
+        
+        // クリックされてドラッグされている間適用
+        &:active {
+            color: purple;
+        }
+    }
+
+    // div プロパティを親にもつspanプロパティのn番目に独自のスタイルを適用する。
+    & span {
+        color: olive;
+
+        // div プロパティを親にもつプロパティのn番目に独自のスタイルを適用する。
+        // この場合、span プロパティ以外の要素もn番目を数えるときにカウントされるので注意。
+        &:nth-child(2n) {
+            color: purple;
+        }
+
+        // :nth-of-type は :nth-child と違い span以外の要素はカウントされない。
+        &:nth-of-type(2n) {
+            color: red;
+        }
+    }
+}
