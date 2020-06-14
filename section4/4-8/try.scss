@@ -1,0 +1,68 @@
+$cWhite: white;
+$cBlack: black;
+
+#container {
+  text-align: center;
+}
+.try {
+  .btn {
+    position: relative;
+    display: inline-block;
+    transform-style: preserve-3d;
+    perspective: 300px;
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    perspective: 300px;
+    transition: all 0.3s;
+    
+    &.cubic {
+
+      & span {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid $cBlack;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        
+        // 親要素の中央に文字を配置したい場合は、line-height を 親要素の高さに設定する。
+        line-height: 50px;
+        text-align: center;
+        transition: all 0.3s;
+
+        // 今回のアニメーションは、回転しつつ半分の高さだけ下方に移動するというものであるから、以下のような記述となる。
+        transform-origin: center center -25px;
+      }
+      
+      & .hovering {
+        color: $cWhite;
+        background-color: $cBlack;
+        transform: rotateX(90deg);
+        opacity: 0;
+      }
+
+      & .default {
+        color: $cBlack;
+        background-color: $cWhite;
+        transform: rotateX(0);
+      }
+    }
+
+    &:hover {
+      &.cubic {
+        & .hovering {
+          transform: rotateX(0);
+          opacity: 1;
+        }
+  
+        & .default {
+          transform: rotateX(-90deg);
+        }
+      }
+    }
+  }
+}

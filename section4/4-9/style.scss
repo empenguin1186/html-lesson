@@ -1,0 +1,79 @@
+.parent {
+  background-color: rgb(81, 218, 218);
+  height: 600px;
+  width: 100%;
+}
+
+.child {
+  background-color: orange;
+  // width: 100px;
+  height: 100px;
+  font-weight: 600;
+
+  // displayプロパティがflexの場合、ある要素の幅をピクセル単位で確保したいときに使用する。
+  // flex-basis: 300px;
+
+  // 要素の大きさを動的に指定する方法。各要素で設定された flex-grow の値をもとに割合を算出し、その割合に基づいて要素の大きさが決定される。
+  flex-grow: 1;
+}
+.child.v1 {
+  // 要素の大きさが指定された分だけ確保できなかった場合、このプロパティが設定された要素を優先的に大きさを確保する。
+  flex-shrink: 0;
+}
+.child.v2 {
+  background-color: palevioletred;
+  flex-grow: 2;
+}
+.child.v3 {
+  background-color: rebeccapurple;
+  flex-grow: 3;
+}
+
+/**
+ * 横方向のレイアウト
+ */
+/* インライン要素に対して */
+// .parent {
+//   text-align: right;
+//   letter-spacing: -6px;
+// }
+// .child {
+//     display: inline-block;
+// }
+
+/* ブロック要素を中央揃え */
+// .parent {
+// }
+// .child {
+//     margin: 0 auto;
+// }
+
+/**
+ * 上下方向のレイアウト
+ */
+// .parent {
+//   position: relative;
+// }
+// .child {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+.parent {
+  display: flex;
+
+  // flex-direction 要素が並ぶ方向を指定できる。
+  // column だと縦に並ぶ。
+  // row-reverse だと要素が逆順に並ぶ。
+  // flex-direction: column;
+
+  // space-around: 要素が等間隔で並ぶ。
+  // space-between: 端の間隔がなくなり、要素間が等間隔で並ぶ。
+  justify-content: space-between;
+
+  // 要素がどこを基準として並ぶかを設定する。
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
