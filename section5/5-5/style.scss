@@ -1,0 +1,49 @@
+$cBlack: black;
+$cWhite: white;
+
+.mobile-menu-icon {
+
+    // 背景色を透明にしたい場合は transparent を指定
+    background-color: transparent;
+    cursor: pointer;
+
+    // ボタンの縁を無くしたい場合は border: none を指定
+    border: none;
+
+    // ブラウザがもつプロパティの影響でボタンにフォーカスしていると枠が表示されてしまう。
+    // none を設定することでその枠をなくすことができる。さらに !important とすることでこの設定が優先的に反映されるようになる
+    outline: none !important;
+    
+    & > span {
+        display: block;
+        width: 35px;
+        height: 2px;
+        transition: transform 0.6s;
+        background-color: $cBlack;
+        margin-bottom: 9px;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+.menu-open {
+    background-color: $cBlack;
+
+    & .mobile-menu-icon {
+        & > span {
+            background-color: $cWhite;
+
+            &:nth-child(1) {
+                transform: translateY(11px) rotate(135deg);
+            }
+            &:nth-child(2) {
+                transform: translateX(-18px) scaleX(0);
+            }
+            &:nth-child(3) {
+                transform: translateY(-11px) rotate(-135deg);
+            }
+        }
+    }
+}
