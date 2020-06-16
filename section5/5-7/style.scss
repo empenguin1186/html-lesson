@@ -1,0 +1,45 @@
+@import 'appear';
+
+
+// ほとんどのプロパティの値が同じだが、一部クラスによってプロパティの値を変更したい場合は, @each を使用して部分的に挙動を変更することが可能。
+$pattern: (
+    "up": translateY(6px),
+    "down": translateY(-6px),
+    "left": translateX(40px),
+    "right": translateX(-40px)
+);
+
+.appear {
+    @each $key, $value in $pattern {
+        &.#{$key} {
+            & .item {
+                transform: $value;
+            }
+        }
+    }
+}
+
+.appear {
+    
+    & .item {
+        opacity: 0;
+        transition: all 0.6s;
+    }
+
+    &.inview {
+        & .item {
+            opacity: 1;
+            transform: none;
+
+            @for $i from 1 through 8 {
+                &:nth-child(#{$i}) {
+                    transition-delay: 0.1s * $i;
+                }
+            }
+        }
+    }
+}
+
+img {
+    max-width: 80%;
+}
