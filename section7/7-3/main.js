@@ -2,10 +2,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cb = function(el, isIntersecting) {
         if(isIntersecting) {
-            ta = new TweenTextAnimation(el);
-            ta.animate();
+            console.log(el);
+            el.classList.add('inview');
         }
-    }    
-
-    so = new ScrollObserver('.tween-animate-title', cb, {once: true});
+    }
+    
+    so = new ScrollObserver('.cover-slide', cb, {});
 });

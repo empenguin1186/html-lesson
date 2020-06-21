@@ -8,7 +8,7 @@
 class TextAnimation {
     /**
      * @constructor
-     * @param {HTMLElement|string} アニメーションを付与する要素
+     * @param {HTMLElement|string} el アニメーションを付与する要素
      */
     constructor(el) {
         this.DOM = {};
@@ -28,6 +28,31 @@ class TextAnimation {
             curr = curr.replace(/\s+/, '&nbsp;');
             return acc += `<span class="char">${curr}</span>`;
         }, "");
+    }
+
+    /**
+     * 指定した要素にアニメーションを付与する。文字数関係なく delay を動的に設定できる。
+     * 
+     * @method animate
+     */
+    animate() {
+        this.DOM.el.classList.toggle('inview');
+    }
+}
+
+/**
+ * 画像にアニメーションを付与するクラス
+ * 
+ * @class ImageAnimation
+ */
+class ImageAnimation {
+    /**
+     * @constructor
+     * @param {HTMLElement|string} el アニメーションを付与する要素
+     */
+    constructor(el) {
+        this.DOM.el = el instanceof HTMLElement ? el : document.querySelector(el);
+        console.log(this.DOM.el);
     }
 
     /**

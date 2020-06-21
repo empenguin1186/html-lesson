@@ -1,0 +1,152 @@
+$cBlack: black;
+$cWhite: white;
+$cMenuOpen: $cBlack;
+$cMenuClose: $cBlack;
+$cSubTitle: #535353;
+
+#container {
+    position: relative;    
+    background-color: teal;
+    height: 100vh;
+    z-index: 1;
+    transition: all 0.5s;
+}
+
+.header {
+    display: flex;
+    height: 100px;
+    background-color: $cWhite;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+body {
+    margin: 0;
+}
+
+.menu-open {
+
+    & #container {
+        transform: translate(-300px, 60px);
+        box-shadow: 0px 8px 40px -10px rgba(0, 0, 0, 0.8);
+    }
+
+    & .mobile-menu {
+        &__cover {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        &__item {
+            transform: none;
+            opacity: 1;
+            
+            @for $i from 1 through 5 {
+                &:nth-child(#{$i}) {
+                    transition-delay: $i * 0.07s;
+                }
+            } 
+        }
+
+        &__btn {
+            & > span {
+                background-color: $cMenuOpen;
+    
+                &:nth-child(1) {
+                    transform: translateY(11px) rotate(135deg);
+                }
+                &:nth-child(2) {
+                    transform: translateX(-18px) scaleX(0);
+                }
+                &:nth-child(3) {
+                    transform: translateY(-11px) rotate(-135deg);
+                }
+            }
+        }
+    }
+}
+
+.mobile-menu {
+    position: fixed;
+    right: 0;
+    top: 60px;
+    width: 300px;
+
+    // プロパティの名前の prefix を統一して以下のように記述するとコードにまとまりができる
+    // このことを BEM (Block Element Modifier) と呼ぶ
+    &__cover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+
+        // クリックした場合でも反応しない
+        visibility: hidden;
+        transition: opacity 1s;
+        
+        cursor: pointer;
+    }
+
+    &__main {
+        padding: 0;
+        list-style: none;
+        margin: 0 40px;
+        perspective: 2000px;
+        transform-style: preserve-3d;
+    }
+    
+    &__item {
+    transition: transform 0.3s, opacity 0.5s;
+        transform: translate3d(0, 0, -1000px);
+        opacity: 0;
+    }
+
+    &__link {
+        display: block;
+        margin: 30px;
+        color: $cBlack;
+        text-decoration: none;
+    }
+
+    &__btn {
+
+        // 背景色を透明にしたい場合は transparent を指定
+        background-color: transparent;
+        cursor: pointer;
+    
+        // ボタンの縁を無くしたい場合は border: none を指定
+        border: none;
+    
+        // ブラウザがもつプロパティの影響でボタンにフォーカスしていると枠が表示されてしまう。
+        // none を設定することでその枠をなくすことができる。さらに !important とすることでこの設定が優先的に反映されるようになる
+        outline: none !important;
+        
+        & > span {
+            display: block;
+            width: 35px;
+            height: 2px;
+            transition: transform 0.6s;
+            background-color: $cMenuClose;
+            margin-bottom: 9px;
+    
+            &:last-child {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
+
+.main-title {
+    color: $cBlack;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.sub-title {
+    display: block;
+    font-size: 14px;
+    color: $cSubTitle;
+}
