@@ -1,0 +1,40 @@
+@import 'modules/variables';
+@import 'modules/mixin';
+@import 'modules/hero-slider';
+@import 'breakpoints/base';
+
+// 画面幅に応じて読み込むCSSを変更する方法 その2
+// @import url('mobile.css') screen and (max-width: 600px);
+// @import url('desktop.css') screen and (min-width: 601px);
+
+// 画面幅に応じて読み込むCSSを変更する方法 その3
+// @media screen and (max-width: 600px) {
+//     @import 'mobile.scss';
+// }
+
+// 'screen and (min-width: 601px)'の部分をメディアクエリと呼ぶ。
+// or 条件の場合はカンマを使用する。
+// screen の他に print が存在する
+@media (max-width: 480px) {
+    @import 'breakpoints/480up';
+}
+
+@media (max-width: 600px) {
+    @import 'breakpoints/600up';
+}
+
+@media (max-width: 960px) {
+    @import 'breakpoints/960up';
+}
+
+@media (max-width: 1280px) {
+    @import 'breakpoints/1280up';
+}
+
+@media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+    @import 'breakpoints/2x';
+}
+
+@media print {
+    @import 'breakpoints/print';
+}
