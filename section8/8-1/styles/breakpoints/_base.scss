@@ -9,6 +9,12 @@ body {
     font-family: 'Kameron', 'Noto Sans JP', sans-serif;
 }
 
+img {
+    max-width: 100%;
+    // 上下余白を解消するプロパティ
+    vertical-align: bottom;
+}
+
 .font-sm {
     font-size: 14px;
 }
@@ -46,3 +52,28 @@ body {
     margin: 0 auto;
     max-width: $contentMaxWidth
 }
+
+.main-title {
+    @extend .font-lg;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.sub-title {
+    @extend .font-sm;
+    color: $cSubTitle;
+}
+
+.houses {
+    @extend .content-width;
+
+    &__title {
+        @extend .font-lr;
+        @extend .mb-sm;
+    }
+
+    &__btn {
+        text-align: center;
+    }
+}
+

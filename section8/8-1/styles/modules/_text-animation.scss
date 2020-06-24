@@ -1,0 +1,18 @@
+// 異なるクラスに同じプロパティを付与したい場合は、カンマで区切る。
+.animate-title,
+.tween-animate-title {
+
+    &.inview {
+        opacity: 1;
+
+        & .char {
+            // transformプロパティを有効にするためには、display プロパティを inline 以外に設定しなければならない。
+            opacity: 0;
+            display: inline-block;
+        }
+    }
+    
+    & .char {
+        opacity: 0;
+    }
+}
