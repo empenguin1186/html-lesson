@@ -3,3 +3,30 @@
 Stylesheet: 600px以上のタブレットやモニタで適用
 
 ******************************************************************/
+
+
+.flex {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.houses {
+
+    &__item {
+        // 1行に２要素格納することが可能
+        flex-basis: 50%;
+        margin-bottom: 60px;
+    }
+}
+
+.popular {
+
+    // justify-content のような各要素ではなく、全体に適用するプロパティに関しては親要素に定義する
+    &__container {
+        justify-content: space-between;
+    }
+
+    &__item {
+        flex-basis: 47%;
+    }
+}

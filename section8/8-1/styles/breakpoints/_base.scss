@@ -64,8 +64,17 @@ img {
     color: $cSubTitle;
 }
 
+.flex {
+    display: flex;
+    flex-direction: column;
+}
+
 .houses {
     @extend .content-width;
+
+    &__inner {
+        @extend .flex;
+    }
 
     &__title {
         @extend .font-lr;
@@ -74,6 +83,62 @@ img {
 
     &__btn {
         text-align: center;
+
+        // flexbox の状況下でボタンは行の真ん中に配置する
+        flex-basis: 100%;
     }
 }
 
+.popular {
+
+    &__inner {
+        position: relative;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90%;
+            background-color: $cBgGray;
+        }
+    }
+
+    &__header {
+        @extend .content-width;
+    }
+
+    &__container {
+        @extend .flex;
+        @extend .content-width;
+        @extend .pb-sm;
+        position: relative;
+        z-index: 2;
+    }
+
+    &__title {
+        @extend .font-md;
+        @extend .mb-sm;
+    }
+
+    &__btn {
+        text-align: center;
+
+        // flexbox の状況下でボタンは行の真ん中に配置する
+        flex-basis: 100%;
+    }
+
+    &__img {
+        height: 150px;
+        overflow: hidden;
+        margin-bottom: 5px;
+        
+        & > img {
+            object-fit: cover;
+            // object-position: bottom;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
