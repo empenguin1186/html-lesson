@@ -69,6 +69,52 @@ img {
     flex-direction: column;
 }
 
+.purple {
+    color: $cWineRed;
+}
+
+.travel {
+    position: relative;
+    
+    @extend .content-width;
+
+    &__inner {
+        @extend .flex;
+        justify-content: space-between;
+        padding: 15px;
+        background-color: $cBgGray;
+
+        &::before {
+            // content: '';
+            // position: absolute;
+            // bottom: 0;
+            // left: 0;
+            // width: 100%;
+            // height: 100%;
+            // background-color: $cBgGray;
+        }
+    }
+
+    &__texts {
+        @extend .pb-sm;
+    }
+
+    &__sub {
+        @extend .mb-sm;
+    }
+
+    &__img {
+        height: 300px;
+        @extend .mb-sm;
+
+        & > img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
 .houses {
     @extend .content-width;
 
