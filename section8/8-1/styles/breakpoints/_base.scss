@@ -74,29 +74,42 @@ img {
 }
 
 .travel {
+
     position: relative;
     
     @extend .content-width;
-
+    
     &__inner {
+        // ローカルスタックコンテキストを生成するには、position プロパティを設定し、
+        // z-index プロパティを0を設定する必要がある
+        position: relative;
+        z-index: 0;
+
         @extend .flex;
         justify-content: space-between;
         padding: 15px;
         background-color: $cBgGray;
-
-        &::before {
-            // content: '';
-            // position: absolute;
-            // bottom: 0;
-            // left: 0;
-            // width: 100%;
-            // height: 100%;
-            // background-color: $cBgGray;
-        }
     }
 
     &__texts {
         @extend .pb-sm;
+    }
+
+    &__title {
+        position: relative;
+
+        @include p-base($display: none, $width: 100px, $height: 1px, $top: 50%, $left: -120px){
+            background-color: $cBlack;
+            transform: translateY(-50%) scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease 1.6s;
+        }
+
+        &.inview {
+            &::before {
+                transform: translateY(-50%);    
+            }
+        }
     }
 
     &__sub {
@@ -106,11 +119,20 @@ img {
     &__img {
         height: 300px;
         @extend .mb-sm;
-
+        
+        transition: box-shadow 1ms linear 0.8s;
+        
         & > img {
+            position: relative;
+            // ローカルスタックコンテキストとの比較になる
+            z-index: -1;
             object-fit: cover;
             height: 100%;
             width: 100%;
+        }
+
+        &.inview {
+            box-shadow: inset 0 0 30px $cBlack;
         }
     }
 }
