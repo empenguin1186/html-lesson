@@ -46,3 +46,15 @@ Stylesheet: 600px以上のタブレットやモニタで適用
         flex-basis: 47%;
     }
 }
+
+.footer {
+    & .logo {
+        justify-content: flex-start;
+    }
+
+    // 要素の左を揃えるために margin-left を 0 に指定
+    &__li {
+        margin-left: 0;
+        margin-right: 30px;
+    }
+}

@@ -210,3 +210,49 @@ img {
         }
     }
 }
+
+.logo {
+    font-size: 42px;
+    display: flex;
+    
+    &__img {
+        width: 0.7em;
+    }
+
+    &__stay {
+        color: $cWineRed;
+    }
+}
+
+.footer {
+    padding: 60px 0;
+    @extend .content-width;
+
+    &__nav {
+        @extend .flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__ul {
+        @extend .flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__li {
+        padding: 0;
+        margin: 10px;
+
+        & > a {
+            color: $cSubTitle;
+        }
+    }
+
+    & .logo {
+        justify-content: center;
+        font-size: 38px;
+    }
+}
