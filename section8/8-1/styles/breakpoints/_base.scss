@@ -48,7 +48,7 @@ img {
 }
 
 .content-width {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     max-width: $contentMaxWidth
 }
@@ -83,6 +83,16 @@ img {
 
 #content {
     padding-top: $navHeight;
+}
+
+#main-content {
+    position: relative;
+    z-index: 0;
+}
+
+main {
+    position: relative;
+    z-index: -1;
 }
 
 .header {
@@ -331,5 +341,64 @@ img {
     & .logo {
         justify-content: center;
         font-size: 38px;
+    }
+}
+
+.side {
+    display: none;
+    position: fixed;
+    top: 70%;
+    transform: translateY(-50%);
+    
+    // 子要素以降に a タグが存在する場合に適用される
+    & a,
+    & span {
+        color: $cBlack;
+        text-decoration: none !important;
+        margin: 0 40px;
+
+        // inline 要素の高さを統一する場合に使用する
+        vertical-align: middle;
+    }
+
+    &.left {
+        left: 50px;
+
+        & .side__inner {
+            transform: rotate(-90deg);
+            transform-origin: top left;
+        }
+    }
+    
+    &.right {
+        right: 50px;
+
+        & .side__inner {
+            transform: rotate(90deg);
+            transform-origin: top right;
+        }
+    }
+}
+
+.icon {
+    position: relative;
+
+    @include p-base($left: -20px, $top: 50%, $width: 1em, $height: 1em) {
+        transform: translateY(-50%);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    &.twitter {
+        &::before {
+            background-image: url(../images/twitter.svg);
+        }
+    }
+    
+    &.fb {
+        &::before {
+            background-image: url(../images/facebook.svg);
+        }
     }
 }
