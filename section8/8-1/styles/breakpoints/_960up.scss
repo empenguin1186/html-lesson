@@ -56,19 +56,15 @@ Stylesheet: 960px以上のモニタで適用
     }
 }
 
-// .footer {
-//     display: flex;
+.header {
+    &__nav {
+        display: block;
+    }
+}
+
+.mobile-menu {
     
-//     &__nav {
-//         display: flex;
-//         flex-direction: row;
-
-//         &__ul {
-//             flex-basis: 20%;
-//         }
-
-//         &__copyright {
-//             flex-basis: 10%;
-//         }
-//     }
-// }
+    &__btn {
+        display: none;
+    }
+}

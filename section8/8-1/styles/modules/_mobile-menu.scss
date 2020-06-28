@@ -1,28 +1,5 @@
-$cBlack: black;
-$cWhite: white;
 $cMenuOpen: $cBlack;
 $cMenuClose: $cBlack;
-$cSubTitle: #535353;
-
-#container {
-    position: relative;    
-    background-color: teal;
-    height: 100vh;
-    z-index: 1;
-    transition: all 0.5s;
-}
-
-.header {
-    display: flex;
-    height: 100px;
-    background-color: $cWhite;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-body {
-    margin: 0;
-}
 
 .menu-open {
 
@@ -32,9 +9,16 @@ body {
     }
 
     & .mobile-menu {
+
+        & .logo {
+            margin: 0 40px;
+            font-size: 38px;
+        }
+
         &__cover {
             opacity: 1;
             visibility: visible;
+            z-index: 200;
         }
 
         &__item {
@@ -99,7 +83,7 @@ body {
     }
     
     &__item {
-        transition: transform 0.3s, opacity 0.5s;
+    transition: transform 0.3s, opacity 0.5s;
         transform: translate3d(0, 0, -1000px);
         opacity: 0;
     }
@@ -108,7 +92,7 @@ body {
         display: block;
         margin: 30px;
         color: $cBlack;
-        text-decoration: none;
+        text-decoration: none !important;
     }
 
     &__btn {
@@ -137,16 +121,4 @@ body {
             }
         }
     }
-}
-
-.main-title {
-    color: $cBlack;
-    font-weight: 600;
-    font-size: 20px;
-}
-
-.sub-title {
-    display: block;
-    font-size: 14px;
-    color: $cSubTitle;
 }
