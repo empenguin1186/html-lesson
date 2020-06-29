@@ -175,6 +175,12 @@ main {
 
     &__texts {
         @extend .pb-sm;
+
+        &.inview {
+            & .travel__title::before {
+                transform: translateY(-50%);    
+            }
+        }
     }
 
     &__title {
@@ -185,12 +191,6 @@ main {
             transform: translateY(-50%) scaleX(0);
             transform-origin: right;
             transition: transform 0.3s ease 1.6s;
-        }
-
-        &.inview {
-            &::before {
-                transform: translateY(-50%);    
-            }
         }
     }
 
@@ -347,10 +347,11 @@ main {
     position: fixed;
     top: 70%;
     transform: translateY(-50%);
+    transition: all .3s ease-in;
     
     // 子要素以降に a タグが存在する場合に適用される
-    & a,
-    & span {
+    & .tween-animate-title {
+        letter-spacing: 2px;
         color: $cBlack;
         text-decoration: none !important;
         margin: 0 40px;
@@ -360,7 +361,11 @@ main {
     }
 
     &.left {
-        left: 50px;
+        left: -50px;
+
+        &.inview {
+            left: 50px;
+        }
 
         & .side__inner {
             transform: rotate(-90deg);
@@ -369,7 +374,11 @@ main {
     }
     
     &.right {
-        right: 50px;
+        right: -50px;
+
+        &.inview {
+            right: 50px;
+        }
 
         & .side__inner {
             transform: rotate(90deg);

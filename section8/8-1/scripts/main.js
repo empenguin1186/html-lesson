@@ -1,20 +1,55 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const hero = new HeroSlider('.swiper-container');
-    hero.start({ delay: 2000 });
-    setTimeout(() => {
-        hero.stop();
-    }, 5000);
+    const main = new Main();
+})
 
-    const cb = function (el, inview) {
+class Main {
+    constructor() {
+        this.header = document.querySelector('.header');
+        this.sides = document.querySelectorAll('.side');
+        this._observers = [];
+        this._init();
+    }
+
+    set observers(val) {
+        this._observers.push(val)
+    }
+
+    get observers() {
+        return this._observers;
+    }
+
+    _init() {
+        new MobileMenu();
+        this.hero = new HeroSlider('.swiper-container');
+        Pace.on('done', this._paceDone.bind(this));
+    }
+
+    _paceDone() {
+        this._scrollInit();
+    }
+
+    _navAnimation(el, inview) {
+        // console.log(this);
         if (inview) {
-            ta = new TweenTextAnimation(el);
-            ta.animate();
+            // el.classList.remove('triggered');
+            this.header.classList.remove('triggered');
+        } else {
+            // el.classList.add('triggered');
+            this.header.classList.add('triggered');
         }
     }
 
-    const so = new ScrollObserver('.tween-animate-title', cb, { once: true });
+    _scrollInit() {
+        this.observers = new ScrollObserver('.nav-trigger', this._navAnimation.bind(this), { once: false });
+        this.observers = new ScrollObserver('.cover-slide', this._inviewAnimation, {});
+        this.observers = new ScrollObserver('.tween-animate-title', this._tweenTextAnimation, { once: true });
+        this.observers = new ScrollObserver('.swiper-container', this._toggleSlideAnimation.bind(this), { once: false });
+        this.observers = new ScrollObserver('.appear', this._inviewAnimation, {});
+        // rootMargin: "-300px 0px" は画面の一番下から300px上部に境界線を引き、監視対象の要素がその境界線を超えた場合にアニメーションが行われるという挙動をとる
+        this.observers = new ScrollObserver('#main-content', this._sideAnimation.bind(this), { once: false, rootMargin: "-300px 0px" });
+    }
 
-    const _inviewAnimation = function (el, inview) {
+    _inviewAnimation(el, inview) {
         if (inview) {
             el.classList.add('inview');
         } else {
@@ -22,20 +57,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    const coverSlideObserver = new ScrollObserver('.cover-slide', _inviewAnimation, {});
-
-    const header = document.querySelector('.header');
-    const _navAnimation = function (el, inview) {
+    _tweenTextAnimation(el, inview) {
         if (inview) {
-            // el.classList.remove('triggered');
-            header.classList.remove('triggered');
-        } else {
-            // el.classList.add('triggered');
-            header.classList.add('triggered');
+            const ta = new TweenTextAnimation(el);
+            ta.animate();
         }
     }
 
-    const navigationObserver = new ScrollObserver('.nav-trigger', _navAnimation, { once: false });
+    _toggleSlideAnimation(el, inview) {
+        if (inview) {
+            this.hero.start();
+        } else {
+            this.hero.stop();
+        }
+    }
 
-    new MobileMenu();
-})
+    _sideAnimation(el, inview) {
+        if (inview) {
+            this.sides.forEach(side => side.classList.add('inview'));
+        } else {
+            this.sides.forEach(side => side.classList.remove('inview'));
+        }
+    }
+
+    _destroyObservers() {
+        this.observers.forEach(ob => {
+            ob.destroy();
+        });
+    }
+
+    destroy() {
+        this._destroyObservers();
+    }
+}
